@@ -9,10 +9,10 @@ Digital Heroes allows users to participate in a golf-score-based monthly draw, m
 ## 🚀 Live Application
 
 **Frontend:**  
-https://your-digital-heroes.vercel.app
+https://digital-heroes-flame-two.vercel.app
 
 **Backend API:**  
-https://your-digital-heroes-api.onrender.com
+https://digital-heroes-1oam.onrender.com
 
 > Replace these URLs with your actual deployed URLs.
 
