@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { plans, current, createCheckout, cancel } from "../controllers/subscription.controller.js";
+import { authenticate } from "../middleware/auth.middleware.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+const router = Router();
+router.use(authenticate);
+router.get("/plans", asyncHandler(plans));
+router.get("/me", asyncHandler(current));
+router.post("/checkout", asyncHandler(createCheckout));
+router.post("/cancel", asyncHandler(cancel));
+export default router;

@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { list, current, details, winnings } from "../controllers/draw.controller.js";
+import { authenticate } from "../middleware/auth.middleware.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+const router = Router();
+router.use(authenticate);
+router.get("/", asyncHandler(list));
+router.get("/current", asyncHandler(current));
+router.get("/winnings", asyncHandler(winnings));
+router.get("/:id", asyncHandler(details));
+export default router;

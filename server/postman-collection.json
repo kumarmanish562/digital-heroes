@@ -1,0 +1,21 @@
+{
+  "info": {
+    "name": "Digital Heroes Premium API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:5000/api/v1"},
+    {"key": "token", "value": ""},
+    {"key": "drawId", "value": ""},
+    {"key": "winnerId", "value": ""}
+  ],
+  "item": [
+    {"name": "Register", "request": {"method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body": {"mode":"raw","raw":"{\n  \"name\": \"Demo Hero\",\n  \"email\": \"hero@example.com\",\n  \"password\": \"Hero@12345\"\n}"}, "url": {"raw":"{{baseUrl}}/auth/register","host":["{{baseUrl}}"],"path":["auth","register"]}}},
+    {"name": "Login", "request": {"method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body": {"mode":"raw","raw":"{\n  \"email\": \"hero@example.com\",\n  \"password\": \"Hero@12345\"\n}"}, "url": {"raw":"{{baseUrl}}/auth/login","host":["{{baseUrl}}"],"path":["auth","login"]}}},
+    {"name": "Current Profile", "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/user/me","host":["{{baseUrl}}"],"path":["user","me"]}}},
+    {"name": "List Scores", "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/scores","host":["{{baseUrl}}"],"path":["scores"]}}},
+    {"name": "Plans", "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/subscriptions/plans","host":["{{baseUrl}}"],"path":["subscriptions","plans"]}}},
+    {"name": "Draws", "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/draws","host":["{{baseUrl}}"],"path":["draws"]}}},
+    {"name": "Admin Dashboard", "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/admin/dashboard","host":["{{baseUrl}}"],"path":["admin","dashboard"]}}}
+  ]
+}

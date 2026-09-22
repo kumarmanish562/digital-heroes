@@ -1,0 +1,10 @@
+import { Router } from "express";
+import { list, mine, select } from "../controllers/charity.controller.js";
+import { authenticate } from "../middleware/auth.middleware.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+const router = Router();
+router.use(authenticate);
+router.get("/", asyncHandler(list));
+router.get("/me", asyncHandler(mine));
+router.post("/select", asyncHandler(select));
+export default router;

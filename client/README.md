@@ -1,32 +1,118 @@
-# React + TypeScript + Vite
+# Digital Heroes Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React + TypeScript + Vite frontend for the Digital Heroes backend.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- TypeScript
+- Vite
+- React Router
+- Axios
+- Lucide React
+- Responsive CSS
 
-## React Compiler
+## Backend contract
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The frontend expects the backend from `digital-heroes-server-complete.zip` to run at:
 
-## Expanding the Oxlint configuration
+`http://localhost:5000`
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+API prefix:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+`http://localhost:5000/api/v1`
+
+Override it in `.env`:
+
+```env
+VITE_API_BASE_URL=http://localhost:5000/api/v1
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Run
+
+```bash
+npm install
+copy .env.example .env
+npm run typecheck
+npm run build
+npm run dev
+```
+
+Open:
+
+`http://localhost:5173`
+
+## Main routes
+
+- `/login`
+- `/register`
+- `/dashboard`
+- `/scores`
+- `/charity`
+- `/subscription`
+- `/draws`
+- `/draws/:id`
+- `/winnings`
+- `/profile`
+- `/admin`
+
+## API mapping
+
+### Auth
+
+- `POST /auth/register`
+- `POST /auth/login`
+- `GET /auth/me`
+- `POST /auth/logout`
+
+### User
+
+- `GET /user/me`
+- `PUT /user/me`
+
+### Scores
+
+- `GET /scores`
+- `POST /scores`
+- `PUT /scores/:id`
+- `DELETE /scores/:id`
+
+### Charity
+
+- `GET /charities`
+- `GET /charities/me`
+- `POST /charities/select`
+
+### Subscription
+
+- `GET /subscriptions/plans`
+- `GET /subscriptions/me`
+- `POST /subscriptions/checkout`
+- `POST /subscriptions/cancel`
+
+### Draws
+
+- `GET /draws`
+- `GET /draws/current`
+- `GET /draws/:id`
+- `GET /draws/winnings`
+
+### Admin
+
+- `GET /admin/dashboard`
+- `GET /admin/users`
+- `POST /admin/draws`
+- `POST /admin/draws/:id/simulate`
+- `POST /admin/draws/:id/publish`
+- `GET /admin/charities`
+- `POST /admin/charities`
+- `PUT /admin/charities/:id`
+- `DELETE /admin/charities/:id`
+- `GET /admin/winners`
+- `POST /admin/winners/:id/approve`
+- `POST /admin/winners/:id/reject`
+- `POST /admin/winners/:id/pay`
+
+## Important backend limitation
+
+The supplied backend has a winner proof service method but no user-facing HTTP endpoint for submitting proof. The frontend therefore shows proof when the backend returns `proofUrl`, but does not invent an upload endpoint.

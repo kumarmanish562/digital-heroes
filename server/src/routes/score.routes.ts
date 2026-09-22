@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { list, create, update, remove } from "../controllers/score.controller.js";
+import { authenticate } from "../middleware/auth.middleware.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+const router = Router();
+router.use(authenticate);
+router.get("/", asyncHandler(list));
+router.post("/", asyncHandler(create));
+router.put("/:id", asyncHandler(update));
+router.delete("/:id", asyncHandler(remove));
+export default router;
